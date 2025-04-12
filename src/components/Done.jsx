@@ -5,7 +5,7 @@ const Cooking = () => {
 
     return (
         <div className='main__item'>
-            <h1>Готовится</h1>
+            <h1>Готово</h1>
             <div className="main__item-orders">
                 {done.map((item, idx) => (
                     <p key={idx}>{item.id}</p>
