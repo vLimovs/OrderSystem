@@ -1,0 +1,18 @@
+import ordersStore from '../store/ordersStore';
+
+const Cooking = () => {
+    const done = ordersStore((state) => state.done);
+
+    return (
+        <div className='main__item'>
+            <h1>Готовится</h1>
+            <div className="main__item-orders">
+                {done.map((item, idx) => (
+                    <p key={idx}>{item.id}</p>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default Cooking;
