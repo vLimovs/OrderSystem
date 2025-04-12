@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import ordersStore from '../store/ordersStore';
 
 const Cooking = () => {
