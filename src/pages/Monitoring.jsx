@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import Cooking from '../components/cooking'
-import Done from '../components/done'
 import ordersStore from '../store/ordersStore'
+import Done from '../components/done';
+import Cooking from '../components/cooking';
 
 const Monitoring = () => {
     const cooking = ordersStore((state) => state.cooking);

@@ -1,6 +1,6 @@
 import ordersStore from '../store/ordersStore';
 
-const Cooking = () => {
+const Done = () => {
     const done = ordersStore((state) => state.done);
 
     return (
@@ -15,4 +15,4 @@ const Cooking = () => {
     );
 };
 
-export default Cooking;
+export default Done;
