@@ -25,14 +25,42 @@ const Admin = () => {
     return (
         <div className='admin' style={{ padding: '20px' }}>
             <h2>Добавить заказ</h2>
-
+            {(cooking.some(order => order.id === newId) || done.some(order => order.id === newId)) && (
+                <p style={{ color: 'red', fontSize: '32px' }}>Такой ID уже существует</p>
+            )}
             <div className='admin__neworder' style={{ marginBottom: '20px' }}>
                 <input
+                    type="text"
                     placeholder="ID"
                     value={newId}
-                    onChange={(e) => setNewId(e.target.value)}
+                    required
+                    onChange={(e) => {
+                        const val = e.target.value;
+                        if (val.length <= 3) {
+                            setNewId(val);
+                        }
+                    }}
+                    onInput={(e) => {
+                        e.target.value = e.target.value.slice(0, 3);
+                    }}
                 />
-                <button onClick={() => setCooking({ id: newId })}>Добавить</button>
+                <button
+                    onClick={() => {
+                        const isDuplicate =
+                            cooking.some(order => order.id === newId) ||
+                            done.some(order => order.id === newId);
+
+                        if (!newId || newId.length > 3 || isDuplicate) return;
+
+                        setCooking({ id: newId });
+                        setNewId('');
+                    }}
+                >
+                    Добавить
+                </button>
+
+
+
             </div>
 
             <h3>Готовится</h3>
@@ -52,7 +80,7 @@ const Admin = () => {
                 {done.length === 0 && <li>Нет готовых заказов</li>}
                 {done.map((order) => (
                     <li key={order.id}>№{order.id}
-                    <button onClick={() => removeDone(order.id)}>🗑 Удалить</button></li>
+                        <button onClick={() => removeDone(order.id)}>🗑 Удалить</button></li>
                 ))}
             </ul>
         </div>
